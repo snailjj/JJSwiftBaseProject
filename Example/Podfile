@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'JJSwiftBaseProject_Example' do
+  pod 'JJSwiftBaseProject', :path => '../'
+
+  target 'JJSwiftBaseProject_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
