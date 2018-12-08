@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import JJSwiftBaseProject
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+//        JJRequestManager.request(method: .get, url: "https://www.apiopen.top/journalismApi")
+        printLog.debug()
+        print(UIDevice.current.appVersion)
+        print(UIDevice.current.iPhoneX)
+        printLog.debug()
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JJSwiftBaseProject'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1.41'
   s.summary          = 'A short description of JJSwiftBaseProject.'
 
 # This description is used to generate tags and improve search results.
@@ -21,16 +21,26 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
+  s.swift_version    = '4.1'
   s.homepage         = 'https://github.com/snailjj/JJSwiftBaseProject'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'snailjj' => 'snail5jj@hotmail.com' }
+  s.author           = { 'snailjj' => 'snail@snailjj.com' }
   s.source           = { :git => 'https://github.com/snailjj/JJSwiftBaseProject.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
+  s.social_media_url = 'https://www.snailjj.com'
+  
   s.ios.deployment_target = '8.0'
-
-  s.source_files = 'JJSwiftBaseProject/Classes/**/*'
+  
+  s.subspec 'Base' do |base|
+      base.source_files =
+      'JJSwiftBaseProject/Base/Managers/*.swift',
+      'JJSwiftBaseProject/Base/CustomUI/*.swift',
+      'JJSwiftBaseProject/Base/Extension/*.swift',
+      'JJSwiftBaseProject/Base/Settings/*.swift'
+      base.dependency 'Alamofire'
+      base.dependency 'XCGLogger'
+      base.dependency 'MJRefresh'
+      base.dependency 'KeychainSwift'
+  end
   
   # s.resource_bundles = {
   #   'JJSwiftBaseProject' => ['JJSwiftBaseProject/Assets/*.png']
@@ -38,5 +48,4 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

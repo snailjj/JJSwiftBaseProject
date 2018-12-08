@@ -1,0 +1,6 @@
+framework module JJSwiftBaseProject {
+  umbrella header "JJSwiftBaseProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
