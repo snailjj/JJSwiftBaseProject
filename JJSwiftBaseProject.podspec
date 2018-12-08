@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JJSwiftBaseProject'
-  s.version          = '0.1.1.41'
+  s.version          = '0.1.2.41'
   s.summary          = 'A short description of JJSwiftBaseProject.'
 
 # This description is used to generate tags and improve search results.
