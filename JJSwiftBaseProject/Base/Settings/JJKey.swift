@@ -8,5 +8,6 @@
 import UIKit
 
 struct JJKey {
-    static let deviceId: String = "JJKey_DEVICEID"
+    /// 设备Id 
+    static let JJ_DEVICE_ID: String = "JJKey_DEVICE_ID"
 }

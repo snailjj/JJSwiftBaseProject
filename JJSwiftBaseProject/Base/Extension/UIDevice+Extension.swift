@@ -15,11 +15,11 @@ public extension UIDevice {
     /// 设备编号
     var deviceId: String {
         get {
-            if let aDeviceId = KeychainSwift().get(JJKey.deviceId) {
+            if let aDeviceId = KeychainSwift().get(JJKey.JJ_DEVICE_ID) {
                 return aDeviceId
             } else {
                 let aDeviceId = UIDevice.current.identifierForVendor?.uuidString ?? "Fail----ErrorDeviceId"
-                KeychainSwift().set(aDeviceId, forKey: JJKey.deviceId)
+                KeychainSwift().set(aDeviceId, forKey: JJKey.JJ_DEVICE_ID)
                 return aDeviceId
             }
         }
@@ -46,21 +46,23 @@ public extension UIDevice {
         }
     }
     
-    
     /// 是否是iPhone X
     var iPhoneX: Bool {
         get {
-            var model = ""
-            switch modelName {
-            case "Simulator":
+            var model = identifier
+            if modelName == "Simulator" {
                 model = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"]!
-            default:
-                model = identifier
             }
             return model == "iPhone10,3" || model == "iPhone10,6" || model.hasPrefix("iPhone11,")
         }
     }
     
+    /// 是否是iPhone4
+    var isiPhone4: Bool {
+        get {
+            return identifier.hasPrefix("iPhone3,") || identifier.hasPrefix("iPhone4,")
+        }
+    }
     
     /// 设备是否可以用faceID
     var canUseFaceID: Bool {
@@ -82,7 +84,7 @@ public extension UIDevice {
         }
     }
     
-    /// 得到设备的 identifier, 例如iPhone10,3、iPhone11,6, 模拟器也对应模拟显示成真实的identifier
+    /// 得到设备的 identifier
     var identifier: String {
         get {
             var systemInfo = utsname()
@@ -97,7 +99,7 @@ public extension UIDevice {
         }
     }
     
-    // 设备型号
+    /// 返回具体设备型号
     var modelName: String {
         get {
             switch identifier {
