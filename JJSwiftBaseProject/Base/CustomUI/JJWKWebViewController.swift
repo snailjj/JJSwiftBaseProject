@@ -26,6 +26,11 @@ public class JJWKWebViewController: JJBaseViewController {
         // Do any additional setup after loading the view.
     }
 
+    deinit {
+        printLog.debug(self)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -7,14 +7,19 @@
 
 import UIKit
 
-public class JJBaseViewController: UIViewController {
+open class JJBaseViewController: UIViewController {
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
     }
 
-    public override func didReceiveMemoryWarning() {
+    deinit {
+        printLog.debug(self)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -23,7 +28,7 @@ public class JJBaseViewController: UIViewController {
 
 extension JJBaseViewController {
     
-    func initUI() {
+    open func initUI() {
         
     }
     

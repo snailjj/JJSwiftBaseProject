@@ -11,28 +11,32 @@ import XCGLogger
 
 public class JJRequestManager: NSObject {
     
-    /// 测试desc
-    /// - parameter url:        The URL.
-    /// - parameter method:     The HTTP method. `post` by default.
-    /// - parameter parameters: The parameters.  by default.
-    /// - parameter encoding:   The parameter encoding. `URLEncoding.default` by default.
-    /// - parameter header:    The HTTP headers. saasdsa.
-    /// - returns: no return.
+    /// 请求数据
+    /// - parameter url:        接口地址
+    /// - parameter method:     请求方式，默认post
+    /// - parameter parameters: 请求参数，字典类型
+    /// - parameter encoding:   参数编码格式 URLEncoding.default
+    /// - parameter header:     请求头信息，字典类型
+    /// - returns:  completeHandler 返回请求结果 Result<Any>
     
-    public class func request(method: HTTPMethod = .post, url: String, parameters: [String: Any] = [:], encoding: URLEncoding = .default, header: [String: String] = [:]) {
+    public class func request(method: HTTPMethod = .post, url: String, parameters: [String: Any] = [:], encoding: URLEncoding = .default, header: [String: String] = [:], completeHandler: @escaping (_ result: Result<Any>) -> Void) {
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: header).responseJSON { (dataResponse) in
-            
-//            if JSONSerialization.isValidJSONObject(dataResponse.data as Any) {
-                do {
-                    let jsonString = try JSONSerialization.jsonObject(with: dataResponse.data!, options: JSONSerialization.ReadingOptions.allowFragments)
-                    printLog.debug(jsonString)
-                } catch {
-                    printLog.debug("Serialization error---\(error.localizedDescription)")
-                }
-                
-//            }
-            
+            DispatchQueue.global().async {
+                completeHandler(dataResponse.result)
+            }
         }
+    }
+    
+    /// 上传文件
+    /// - parameter url:        接口地址
+    /// - parameter method:     请求方式，默认post
+    /// - parameter parameters: 请求参数，字典类型
+    /// - parameter encoding:   参数编码格式 URLEncoding.default
+    /// - parameter header:     请求头信息，字典类型
+    /// - returns:  completeHandler 返回请求结果 Result<Any>
+    
+    public class func upload(url: String, parameters: [String: Any] = [:], header: [String: String] = [:], completeHandler: @escaping (_ result: Result<Any>) -> Void) {
+        
     }
     
 }

@@ -49,4 +49,9 @@ public class JJWKWebView: WKWebView {
         }
     }
     
+    deinit {
+        printLog.debug(self)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
