@@ -7,7 +7,6 @@
 
 import UIKit
 import Alamofire
-import XCGLogger
 
 public class JJRequestManager: NSObject {
     
@@ -22,6 +21,7 @@ public class JJRequestManager: NSObject {
     public class func request(method: HTTPMethod = .post, url: String, parameters: [String: Any] = [:], encoding: URLEncoding = .default, header: [String: String] = [:], completeHandler: @escaping (_ result: Result<Any>) -> Void) {
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: header).responseJSON { (dataResponse) in
             DispatchQueue.global().async {
+                printLog.debug()
                 completeHandler(dataResponse.result)
             }
         }
