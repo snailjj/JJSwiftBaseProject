@@ -30,12 +30,16 @@ TODO: Add long description of the pod here.
   
   s.ios.deployment_target = '8.0'
   
+  # 基础库
   s.subspec 'Base' do |base|
+      # 文件目录
       base.source_files =
       'JJSwiftBaseProject/Base/Managers/*.swift',
       'JJSwiftBaseProject/Base/CustomUI/*.swift',
       'JJSwiftBaseProject/Base/Extension/*.swift',
       'JJSwiftBaseProject/Base/Settings/*.swift'
+      
+      # 依赖库
       base.dependency 'Alamofire'
       base.dependency 'XCGLogger'
       base.dependency 'MJRefresh'
